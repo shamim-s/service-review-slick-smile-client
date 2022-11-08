@@ -1,10 +1,13 @@
-import logo from './logo.svg';
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
+import { router } from './components/Routes/Routes';
 
-function App() {
+function App({children}) {
   return (
-    <div className="App">
-      
+    <div className='pr-20 pl-20 pt-8' data-theme="cupcake">
+      <RouterProvider router={router}>
+        {children}
+      </RouterProvider>
     </div>
   );
 }
