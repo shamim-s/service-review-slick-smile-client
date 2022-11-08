@@ -23,7 +23,7 @@ const Details = () => {
           <hr />
           <p className="mb-8">{details}</p>
           <p className="font-semibold mt-2">Rating: {rating}</p>
-          <p className="font-semibold mt-2">Price: {price}</p>
+          <p className="font-semibold mt-2">Price: ${price}</p>
         </div>
       </section>
       <hr />

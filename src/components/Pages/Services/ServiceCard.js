@@ -25,7 +25,7 @@ const ServiceCard = ({service}) => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           <p className='mt-4 font-semibold'>Rating: {service.rating}</p>
-          <p className='mt-2 font-semibold'>Price: {service.price}</p>
+          <p className='mt-2 font-semibold'>Price: ${service.price}</p>
         </Typography>
       </CardContent>
       <CardActions>

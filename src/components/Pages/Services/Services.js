@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Hero from './Hero';
 import ServiceCard from './ServiceCard';
 
 const Services = () => {
@@ -11,16 +12,23 @@ const Services = () => {
     },[])
     return (
         <div className='mt-10 mb-10'>
+            {/* services hero section  */}
+            <section className=''>
+                <Hero></Hero>
+            </section>
+
             <h1 className='text-center text-3xl font-bold mb-4'>All Services</h1>
             <hr className='mb-6'/>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-20'>
+
+            {/* services section  */}
+            <section className='grid lg:grid-cols-3 md:grid-cols-2 gap-20'>
                 {
                     allServices.map(service => <ServiceCard 
                         key={service._id}
                         service={service}
                         ></ServiceCard>)
                 }
-            </div>
+            </section>
         </div>
     );
 };
