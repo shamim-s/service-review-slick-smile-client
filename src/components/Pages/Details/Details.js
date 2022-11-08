@@ -1,11 +1,13 @@
-import { getDisplayName } from "@mui/utils";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Context/Context";
+import AddReview from "./AddReview";
 import ReviewCard from "./ReviewCard";
 
 const Details = () => {
   const service = useLoaderData();
   const {name, img, price, details, rating} = service;
+  const {modal, setModal} = useContext(AuthContext);
 
   const [reviews, setReviews] = useState([]);
 
@@ -15,7 +17,7 @@ const Details = () => {
     .then(data => setReviews(data))
   },[name])
   return (
-    <div>
+    <div className="relative">
       <section className="lg:flex mt-10 mb-10">
         <img src={img} className="lg:w-1/2 lg:mr-8" alt=""/>
         <div className="lg:mt-0 mt-6">
@@ -38,6 +40,10 @@ const Details = () => {
                 ></ReviewCard>)
             }
           </div>
+          {
+              modal === true && <AddReview></AddReview>
+          }
+          <p className="text-center mb-6"><button className="btn" onClick={() => setModal(true)}>ADD A REVIEW</button></p>
       </section>
     </div>
   );

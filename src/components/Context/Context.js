@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 
-const Context = () => {
+export const AuthContext = createContext();
+
+const Context = ({children}) => {
+    const [modal, setModal] = useState(false);
+
+    const userInfo = {
+        modal,
+        setModal,
+    }
     return (
-        <div>
-            
-        </div>
+            <AuthContext.Provider value={userInfo}>
+                {
+                    children
+                }
+            </AuthContext.Provider>
     );
 };
 
