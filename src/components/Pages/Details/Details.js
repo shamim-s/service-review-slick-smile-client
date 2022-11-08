@@ -18,7 +18,7 @@ const Details = () => {
     fetch(`http://localhost:5000/reviews?name=${name}`)
     .then(res => res.json())
     .then(data => setReviews(data))
-  },[name])
+  },[reviews, name])
   return (
     <div className="relative">
       <section className="lg:flex mt-10 mb-10">

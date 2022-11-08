@@ -16,8 +16,19 @@ const AddReview = ({service}) => {
             review: message
             }
         
-            fetch()
+            fetch(`http://localhost:5000/reviews/add`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json' 
+                },
+                body:JSON.stringify(review)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
 
+            setModal(false);
         console.log(message);
     }
   return (
