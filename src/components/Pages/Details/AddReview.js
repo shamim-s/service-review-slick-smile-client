@@ -2,8 +2,24 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../Context/Context";
 import { Link } from "react-router-dom";
 
-const AddReview = () => {
-    const {setModal} = useContext(AuthContext);
+const AddReview = ({service}) => {
+    const {setModal, user} = useContext(AuthContext);
+
+    const handlereviewSubmit = event => {
+        event.preventDefault();
+        const message = event.target.message.value;
+
+        const review = {
+            name: service.name,
+            img: user.photoURL,
+            email: user.email,
+            review: message
+            }
+        
+            fetch()
+
+        console.log(message);
+    }
   return (
     <div>
       <div className="flex flex-col max-w-xl p-8 shadow-2xl rounded-xl lg:p-12 dark:bg-gray-900 dark:text-gray-100 absolute bg-base-300 lg:top-60 z-10 md:top-3/4 top-3/4 lg:left-96 md:left-44">
@@ -86,19 +102,23 @@ const AddReview = () => {
               </button>
             </div>
           </div>
-          <div className="flex flex-col w-full">
-            <textarea
-              rows="3"
-              placeholder="Message..."
-              className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"
-            ></textarea>
+          <form onSubmit={handlereviewSubmit} className="flex flex-col w-full">
+            <textarea 
+            name="message" 
+            id="message" 
+            rows="3" 
+            placeholder="Message..."
+            className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"
+            >
+            </textarea>
             <button
-              type="button"
+              type="submit"
+              val
               className="btn py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-sky-400"
             >
               Leave feedback
             </button>
-          </div>
+          </form>
         </div>
         <div className="flex items-center justify-center">
           <Link

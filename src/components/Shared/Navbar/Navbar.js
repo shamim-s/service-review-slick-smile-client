@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/Context";
+import { HiOutlineUserCircle } from "react-icons/hi";
+import { HiArrowRightOnRectangle } from "react-icons/hi2";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const {user, logoutUser, setUser} = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logoutUser()
+    .then(() => {
+      toast.success("Logout successfully");
+      setUser({});
+    })
+    .catch(err => {
+      console.error(err);
+      toast.error(err.message);
+    })
+  }
   return (
     <div className="navbar bg-base-300">
       <div className="navbar-start">
@@ -24,7 +41,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-semibold"
           >
             <li>
               <Link to={'/'}>HOME</Link>
@@ -37,10 +54,10 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">SLICK-SMILE</a>
+        <Link to={'/'} className="btn btn-ghost normal-case text-xl">SLICK-SMILE</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
+        <ul className="menu menu-horizontal p-0 font-semibold">
           <li>
             <Link to={'/'}>HOME</Link>
           </li>
@@ -53,7 +70,24 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to={'/login'} className="btn">LOGIN</Link>
+        {
+          user?.email ?
+          <>
+          {
+            user?.photoURL ? 
+              <span className="tooltip tooltip-bottom" data-tip={user.displayName}>
+              <img className="mask mask-circle w-12 " src="https://placeimg.com/160/160/arch" alt=""/>
+              </span> 
+              :
+              <span className="tooltip tooltip-bottom" data-tip={user.displayName}>
+              <HiOutlineUserCircle className="text-4xl hover:text-cyan-500 cursor-pointer"/>
+              </span>
+          }
+          <HiArrowRightOnRectangle onClick={handleLogout} className="tooltip tooltip-bottom text-3xl ml-4 hover:text-red-600 cursor-pointer"/>
+          </>
+          :
+          <Link to={'/login'} className="btn">LOGIN</Link>
+        }
       </div>
     </div>
   );

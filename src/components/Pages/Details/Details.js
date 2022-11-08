@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
 import AddReview from "./AddReview";
+import LoginModal from "./LoginModal";
 import ReviewCard from "./ReviewCard";
 
 const Details = () => {
+  const {user} = useContext(AuthContext);
+
   const service = useLoaderData();
   const {name, img, price, details, rating} = service;
   const {modal, setModal} = useContext(AuthContext);
@@ -41,9 +44,29 @@ const Details = () => {
             }
           </div>
           {
-              modal === true && <AddReview></AddReview>
+            user?.uid ? 
+            <>
+            {
+              modal === true && <AddReview service={service}></AddReview>
+            }
+            </>
+            :
+            <LoginModal></LoginModal>
           }
-          <p className="text-center mb-6"><button className="btn" onClick={() => setModal(true)}>ADD A REVIEW</button></p>
+          
+          <p className="text-center mb-6">
+            {
+              user?.uid ?
+              <button  
+                onClick={() => setModal(true)}
+                 className="btn" 
+
+                >ADD A REVIEW
+              </button>
+              :
+              <label htmlFor="my-modal" className="btn">ADD A REVIEW</label>
+            }
+          </p>
       </section>
     </div>
   );

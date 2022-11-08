@@ -1,11 +1,52 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from '../../Context/Context';
 
 const Register = () => {
+  const {setUser, createNewUser, updateUser} = useContext(AuthContext);
+
+  const naviget = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+
+
+  const handleSignUp = event => {
+    event.preventDefault();
+
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createNewUser(email, password)
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+      updateUser(name)
+      .then(() => {
+        toast.success("Name Updated")
+      })
+      .catch(err => {
+        console.error(err)
+        toast.error(err.message);
+      })
+
+      setUser(user);
+      naviget(from, {replace: true});
+      toast.success("Register Successfully");
+    })
+    .catch(err => {
+      console.error(err);
+      toast.error(err.message);
+    })
+  
+  }
     return (
         <div className="bg-base-300 mx-auto mt-10 mb-10 w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
       <h1 className="text-2xl font-bold text-center">Sign Up</h1>
       <form
+        onSubmit={handleSignUp}
         className="space-y-6 ng-untouched ng-pristine ng-valid"
       >
         <div className="space-y-1 text-sm">
@@ -44,13 +85,13 @@ const Register = () => {
             className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-sky-400"
           />
         </div>
-        <button className="btn block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-sky-400">
+        <button type='submit' className="btn block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-sky-400">
           Sign Up
         </button>
       </form>
       <div className="divider">OR</div>
       <div className="flex justify-center space-x-4">
-        <button aria-label="Log in with Google" className="p-3 rounded-sm">
+        <button className="p-3 rounded-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"

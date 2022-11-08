@@ -1,11 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/Context";
 
 const Login = () => {
+  const {setUser, loginUser} = useContext(AuthContext);
+
+  const naviget = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+  
+  const handleLogin = event => {
+    event.preventDefault();
+
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    loginUser(email, password)
+    .then(result => {
+      const user = result.user;
+    console.log(user);
+    setUser(user);
+    naviget(from, {replace: true});
+    toast.success("Login Successfully");
+    })
+    .catch(err => {
+      console.error(err);
+      toast.error(err.message);
+    })
+
+  }
   return (
     <div className="bg-base-300 mx-auto mt-10 mb-10 w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
       <h1 className="text-2xl font-bold text-center">Sign In</h1>
       <form
+      onSubmit={handleLogin}
         className="space-y-6 ng-untouched ng-pristine ng-valid"
       >
         <div className="space-y-1 text-sm">
@@ -32,9 +62,9 @@ const Login = () => {
             className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-sky-400"
           />
           <div className="flex justify-end text-xs dark:text-gray-400">
-            <a rel="noopener noreferrer" href="#">
+            <Link rel="noopener noreferrer" href="#">
               Forgot Password?
-            </a>
+            </Link>
           </div>
         </div>
         <button className="btn block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-sky-400">
@@ -43,7 +73,7 @@ const Login = () => {
       </form>
       <div className="divider">OR</div>
       <div className="flex justify-center space-x-4">
-        <button aria-label="Log in with Google" className="p-3 rounded-sm">
+        <button className="p-3 rounded-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
