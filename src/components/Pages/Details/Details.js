@@ -17,9 +17,9 @@ const Details = () => {
   return (
     <div>
       <section className="lg:flex mt-10 mb-10">
-        <img src={img} className="w-96 lg:mr-8" alt=""/>
+        <img src={img} className="lg:w-1/2 lg:mr-8" alt=""/>
         <div className="lg:mt-0 mt-6">
-          <h1 className="text-2xl font-semibold mb-2">{name}</h1>
+          <h1 className="text-4xl uppercase font-semibold mb-2">{name}</h1>
           <hr />
           <p className="mb-8">{details}</p>
           <p className="font-semibold mt-2">Rating: {rating}</p>

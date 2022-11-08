@@ -9,8 +9,8 @@ const Hero = () => {
           <h1 className="text-5xl font-bold leading-none sm:text-6xl xl:max-w-3xl dark:text-gray-900">
             BEST VALUED SERVICES FOR YOU
           </h1>
-          <p className="mt-6 mb-8 text-lg sm:mb-12 xl:max-w-3xl dark:text-gray-900">
-            Providing best valued services to you and your family
+          <p className="mt-6 mb-8 text-lg sm:mb-12 xl:max-w-3xl dark:text-gray-900 uppercase">
+            The Slick Smile provides you all times best valued service for your next bright today.
           </p>
           <div className="flex flex-wrap justify-center">
           </div>
@@ -19,7 +19,7 @@ const Hero = () => {
       <img
         src={image}
         alt=""
-        className="w-4/6 mx-auto mb-12 -mt-20 rounded-lg shadow-md lg:-mt-40 dark:bg-gray-500"
+        className="w-4/6 mx-auto mb-12 -mt-20 rounded-lg shadow-xl lg:-mt-40 dark:bg-gray-500"
       />
     </section>
   );
