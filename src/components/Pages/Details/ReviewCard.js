@@ -1,4 +1,5 @@
 import React from "react";
+import image from '../../../images/avatar-svgrepo-com (1).svg';
 
 const ReviewCard = ({review}) => {
   return (
@@ -6,11 +7,15 @@ const ReviewCard = ({review}) => {
       <div className="flex justify-between p-4">
         <div className="flex space-x-4">
           <div>
-            <img
+            {
+              review?.img ? <img
               src={review.img}
               alt=""
               className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
             />
+            :
+            <img src={image} alt="" className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"/>
+            }
           </div>
           <div>
             <h4 className="font-bold">{review.email}</h4>

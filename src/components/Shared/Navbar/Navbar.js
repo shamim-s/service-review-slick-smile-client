@@ -49,9 +49,15 @@ const Navbar = () => {
             <li>
               <Link to={'/services'}>SERVICES</Link>
             </li>
+            {
+              user?.email && <li><Link to={'/myreviews'}>MY REVIEWS</ Link></li>
+            }
+            {
+              user?.email && <li><Link to={'/addservice'}>ADD SERVICE</Link></li>
+            }
             <li>
-              <Link to={'/myreviews'}>MY REVIEWS</Link>
-            </li>
+            <Link to={'/blog'}>BLOGS</Link>
+          </li>
           </ul>
         </div>
         <Link to={'/'} className="btn btn-ghost normal-case text-xl">SLICK-SMILE</Link>
@@ -71,7 +77,7 @@ const Navbar = () => {
             user?.email && <li><Link to={'/addservice'}>ADD SERVICE</Link></li>
           }
           <li>
-            <Link to={'/blog'}>BLOG</Link>
+            <Link to={'/blog'}>BLOGS</Link>
           </li>
         </ul>
       </div>

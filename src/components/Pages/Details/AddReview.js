@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/Context";
 import { Link } from "react-router-dom";
+import moment from 'moment';
 
 const AddReview = ({service}) => {
     const {setModal, user} = useContext(AuthContext);
@@ -13,7 +14,8 @@ const AddReview = ({service}) => {
             name: service.name,
             img: user.photoURL,
             email: user.email,
-            review: message
+            review: message,
+            time: moment().format("h:mm:ss")
             }
         
             fetch(`http://localhost:5000/reviews/add`, {
