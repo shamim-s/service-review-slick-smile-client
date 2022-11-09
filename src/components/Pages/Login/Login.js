@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
 
 const Login = () => {
-  const {setUser, loginUser} = useContext(AuthContext);
+  const {setUser, loginUser, loginWithGoogle} = useContext(AuthContext);
 
   const naviget = useNavigate();
   const location = useLocation();
@@ -29,8 +29,22 @@ const Login = () => {
       console.error(err);
       toast.error(err.message);
     })
-
   }
+
+  const loginWithPopup = () => {
+    loginWithGoogle()
+    .then(result => {
+      const user = result.user;
+      setUser(user);
+      naviget(from, {replace: true});
+      toast.success("Login Successfully");
+    })
+    .catch(err => {
+      console.error(err);
+      toast.error(err.message);
+    })
+  }
+  
   return (
     <div className="bg-base-300 mx-auto mt-10 mb-10 w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
       <h1 className="text-2xl font-bold text-center">Sign In</h1>
@@ -73,7 +87,9 @@ const Login = () => {
       </form>
       <div className="divider">OR</div>
       <div className="flex justify-center space-x-4">
-        <button className="p-3 rounded-sm">
+        <button 
+          onClick={loginWithPopup} 
+          className="p-3 rounded-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"

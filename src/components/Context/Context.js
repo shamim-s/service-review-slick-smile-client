@@ -1,9 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
+
+const googleAuthProvider = new GoogleAuthProvider();
 
 const Context = ({children}) => {
     const [modal, setModal] = useState(false);
@@ -34,6 +36,11 @@ const Context = ({children}) => {
         return signOut(auth);
     }
 
+    //Login with Google
+    const loginWithGoogle = () => {
+        return signInWithPopup(auth, googleAuthProvider);
+    }
+
     // get the current user is by setting an observer 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -54,6 +61,7 @@ const Context = ({children}) => {
         loginUser,
         updateUser,
         logoutUser,
+        loginWithGoogle,
     }
     return (
             <AuthContext.Provider value={userInfo}>
