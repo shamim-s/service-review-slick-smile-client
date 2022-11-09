@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useTitle from "../../../hook/useTitle";
 import { AuthContext } from "../../Context/Context";
 
 const Login = () => {
+  useTitle('Login');
   const {setUser, loginUser, loginWithGoogle} = useContext(AuthContext);
 
   const naviget = useNavigate();

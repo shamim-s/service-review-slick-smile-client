@@ -1,8 +1,10 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../../hook/useTitle";
 
 const UpdateReview = () => {
+  useTitle('Update Review');
   const myReview = useLoaderData();
 
   const updateReview = event => {

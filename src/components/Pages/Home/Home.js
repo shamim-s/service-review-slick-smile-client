@@ -1,10 +1,12 @@
 import React from "react";
+import useTitle from "../../../hook/useTitle";
 import CustomerReview from "./CustomerReview/CustomerReview";
 import Hero from "./Hero/Hero";
 import Services from "./Services/Services";
 import Status from "./Status/Status";
 
 const Home = () => {
+  useTitle('Home');
   return (
     <div className="mt-10 mb-10">
       <Hero></Hero>
