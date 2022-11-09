@@ -14,24 +14,23 @@ const MyReviews = () => {
   }, [user]);
 
   const handleDelete = (review) => {
-    const confirm = window.confirm('Are you sure to delete this review?')
+    const confirm = window.confirm("Are you sure to delete this review?");
     console.log(confirm);
-    if(confirm){
-        fetch(`http://localhost:5000/myreview/${review._id}`, {
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged){
-                toast.success("Review deleted successfully");
-            }
-            console.log(data);
-            const reming = myReview.filter(r => r._id !== review._id);
-            setMyReview(reming);
-        })
+    if (confirm) {
+      fetch(`http://localhost:5000/myreview/${review._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            toast.success("Review deleted successfully");
+          }
+          console.log(data);
+          const reming = myReview.filter((r) => r._id !== review._id);
+          setMyReview(reming);
+        });
     }
-
-  }
+  };
 
   return (
     <div>
@@ -54,18 +53,23 @@ const MyReviews = () => {
                 <td>{review.name}</td>
                 <td>{review.review.slice(0, 40) + "..."}</td>
                 <td>
-                  <button className="">UPDATE</button>
+                  <Link to={`/reviews/${review._id}`}>UPDATE</Link>
                 </td>
                 <td>
-                  <button onClick={() => handleDelete(review)} className="text-red-500">DELETE</button>
+                  <button
+                    onClick={() => handleDelete(review)}
+                    className="text-red-500"
+                  >
+                    DELETE
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {
-                myReview.length === 0 && <h1 className="text-center mt-5 text-2xl">Now review added</h1>
-            }
+        {myReview.length === 0 && (
+          <h1 className="text-center mt-5 text-2xl">Now review added</h1>
+        )}
       </div>
     </div>
   );
