@@ -10,7 +10,7 @@ const MyReviews = () => {
   const [myReview, setMyReview] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myreview?email=${user.email}`, {
+    fetch(`https://slick-smile-server.vercel.app/myreview?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -28,7 +28,7 @@ const MyReviews = () => {
     const confirm = window.confirm("Are you sure to delete this review?");
     console.log(confirm);
     if (confirm) {
-      fetch(`http://localhost:5000/myreview/${review._id}`, {
+      fetch(`https://slick-smile-server.vercel.app/myreview/${review._id}`, {
         method: "DELETE",
       })
         .then(res => res.json())

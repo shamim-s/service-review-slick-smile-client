@@ -18,7 +18,7 @@ const AddReview = ({service}) => {
             review: message,
             time: moment().format("h:mm:ss")
             }
-            fetch(`http://localhost:5000/reviews/add`, {
+            fetch(`https://slick-smile-server.vercel.app/reviews/add`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json' 

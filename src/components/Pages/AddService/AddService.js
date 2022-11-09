@@ -24,7 +24,7 @@ const AddService = () => {
         }
         console.log(newService);
 
-        fetch('http://localhost:5000/addservice', {
+        fetch('https://slick-smile-server.vercel.app/addservice', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

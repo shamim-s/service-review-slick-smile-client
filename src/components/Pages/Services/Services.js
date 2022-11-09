@@ -8,7 +8,7 @@ const Services = () => {
     const [allServices, setAllServices] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services/all')
+        fetch('https://slick-smile-server.vercel.app/services/all')
         .then(res => res.json())
         .then(data => setAllServices(data))
     },[])

@@ -29,7 +29,7 @@ const Login = () => {
       }
 
       // jwt
-      fetch('http://localhost:5000/jwt', {
+      fetch('https://slick-smile-server.vercel.app/jwt', {
         method:'POST',
         headers: {
           'content-type':'application/json'

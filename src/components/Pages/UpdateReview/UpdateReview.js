@@ -19,7 +19,7 @@ const UpdateReview = () => {
     }
     console.log(review);
 
-    fetch(`http://localhost:5000/reviews/${myReview._id}`, {
+    fetch(`https://slick-smile-server.vercel.app/reviews/${myReview._id}`, {
         method: 'PUT',
         headers: {
             'content-type':'application/json'

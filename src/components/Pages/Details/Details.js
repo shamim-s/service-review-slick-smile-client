@@ -15,7 +15,7 @@ const Details = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?name=${name}`)
+    fetch(`https://slick-smile-server.vercel.app/reviews?name=${name}`)
     .then(res => res.json())
     .then(data => setReviews(data))
   },[reviews, name])

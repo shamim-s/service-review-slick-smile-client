@@ -47,12 +47,12 @@ export const router = createBrowserRouter([
             {
                 path: '/services/all/:id',
                 element: <Details></Details>,
-                loader: ({params}) => fetch(`http://localhost:5000/services/all/${params.id}`)
+                loader: ({params}) => fetch(`https://slick-smile-server.vercel.app/services/all/${params.id}`)
             },
             {
                 path: '/reviews/:id',
                 element: <UpdateReview/>,
-                loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`)
+                loader: ({params}) => fetch(`https://slick-smile-server.vercel.app/reviews/${params.id}`)
             }
         ]
     }
