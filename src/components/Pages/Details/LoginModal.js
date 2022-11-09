@@ -18,8 +18,8 @@ const LoginModal = () => {
             <label htmlFor="my-modal" className="btn">
                     Close
                 </label>
-                <label htmlFor="my-modal" className="btn">
-                     <Link to={'/login'}>Login?</Link>
+                <label htmlFor="my-modal" className="">
+                     <Link className="btn" to={'/login'}>Login?</Link>
                 </label>
           </div>
         </div>

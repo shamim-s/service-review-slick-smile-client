@@ -8,7 +8,6 @@ const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
 
 const Context = ({children}) => {
-    const [modal, setModal] = useState(false);
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -51,8 +50,6 @@ const Context = ({children}) => {
     },[user])
 
     const userInfo = {
-        modal,
-        setModal,
         user,
         setUser,
         loading,

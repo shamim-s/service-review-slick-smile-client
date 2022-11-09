@@ -12,7 +12,6 @@ const Details = () => {
 
   const service = useLoaderData();
   const {name, img, price, details, rating} = service;
-  const {modal, setModal} = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -47,9 +46,7 @@ const Details = () => {
           {
             user?.uid ? 
             <>
-            {
-              modal === true && <AddReview service={service}></AddReview>
-            }
+            <AddReview service={service}></AddReview>
             </>
             :
             <LoginModal></LoginModal>
@@ -58,12 +55,7 @@ const Details = () => {
           <p className="text-center mb-6">
             {
               user?.uid ?
-              <button  
-                onClick={() => setModal(true)}
-                 className="btn" 
-
-                >ADD A REVIEW
-              </button>
+              <label htmlFor="my-modal" className="btn">ADD A REVIEW</label>
               :
               <label htmlFor="my-modal" className="btn">ADD A REVIEW</label>
             }
