@@ -20,13 +20,31 @@ const Login = () => {
     loginUser(email, password)
     .then(result => {
       const user = result.user;
-    console.log(user);
-    setUser(user);
-    naviget(from, {replace: true});
-    toast.success("Login Successfully");
+      setUser(user);
+
+      const crrUser = {
+        email: user.email
+      }
+
+      // jwt
+      fetch('http://localhost:5000/jwt', {
+        method:'POST',
+        headers: {
+          'content-type':'application/json'
+        },
+        body: JSON.stringify(crrUser)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        localStorage.setItem('token', data.token);
+        naviget(from, {replace:true})
+      })
+      
+      toast.success('Login Success');
     })
     .catch(err => {
-      console.error(err);
+      console.log(err);
       toast.error(err.message);
     })
   }
@@ -53,7 +71,7 @@ const Login = () => {
         className="space-y-6 ng-untouched ng-pristine ng-valid"
       >
         <div className="space-y-1 text-sm">
-          <label for="email" className="block dark:text-gray-400">
+          <label htmlFor="email" className="block dark:text-gray-400">
             Email
           </label>
           <input
@@ -65,7 +83,7 @@ const Login = () => {
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label for="password" className="block dark:text-gray-400">
+          <label htmlFor="password" className="block dark:text-gray-400">
             Password
           </label>
           <input

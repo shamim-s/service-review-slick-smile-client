@@ -50,7 +50,7 @@ const Register = () => {
         className="space-y-6 ng-untouched ng-pristine ng-valid"
       >
         <div className="space-y-1 text-sm">
-          <label for="name" className="block dark:text-gray-400">
+          <label htmlFor="name" className="block dark:text-gray-400">
             Name
           </label>
           <input
@@ -62,7 +62,7 @@ const Register = () => {
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label for="email" className="block dark:text-gray-400">
+          <label htmlFor="email" className="block dark:text-gray-400">
             Email
           </label>
           <input
@@ -74,7 +74,7 @@ const Register = () => {
           />
         </div>
         <div className="space-y-1 text-sm">
-          <label for="password" className="block dark:text-gray-400">
+          <label htmlFor="password" className="block dark:text-gray-400">
             Password
           </label>
           <input

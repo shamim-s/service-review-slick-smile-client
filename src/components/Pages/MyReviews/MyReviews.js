@@ -4,14 +4,23 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/Context";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logoutUser } = useContext(AuthContext);
   const [myReview, setMyReview] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myreview?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setMyReview(data));
-  }, [user]);
+    fetch(`http://localhost:5000/myreview?email=${user.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(res => {
+        if(res.status === 401 || res.status === 403){
+         logoutUser();
+      }
+      return res.json();
+      })
+      .then(data => setMyReview(data));
+  }, [user, logoutUser]);
 
   const handleDelete = (review) => {
     const confirm = window.confirm("Are you sure to delete this review?");
@@ -20,12 +29,11 @@ const MyReviews = () => {
       fetch(`http://localhost:5000/myreview/${review._id}`, {
         method: "DELETE",
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.acknowledged) {
+        .then(res => res.json())
+        .then(data => {
+          if(data.acknowledged){
             toast.success("Review deleted successfully");
           }
-          console.log(data);
           const reming = myReview.filter((r) => r._id !== review._id);
           setMyReview(reming);
         });

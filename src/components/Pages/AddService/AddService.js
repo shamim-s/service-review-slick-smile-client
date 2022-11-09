@@ -53,7 +53,7 @@ const AddService = () => {
           </div>
           <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
             <div className="col-span-full sm:col-span-3">
-              <label for="sname" className="text-sm">
+              <label htmlFor="sname" className="text-sm">
                 Service name
               </label>
               <input
@@ -66,7 +66,7 @@ const AddService = () => {
             </div>
             <div className="col-span-full sm:col-span-3">
             <label 
-            for="bio" 
+            htmlFor="bio" 
             className="text-sm">Service Details</label>
             <textarea 
             id="sdetails" 
@@ -75,7 +75,7 @@ const AddService = () => {
             className="p-2 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-400 dark:border-gray-700 dark:text-gray-900"></textarea>
             </div>
             <div className="col-span-full sm:col-span-3">
-              <label for="imglink" className="text-sm">
+              <label htmlFor="imglink" className="text-sm">
                 Service image link
               </label>
               <input
@@ -87,7 +87,7 @@ const AddService = () => {
               />
             </div>
             <div className="col-span-full">
-              <label for="price" className="text-sm">
+              <label htmlFor="price" className="text-sm">
                 Service Price
               </label>
               <input
@@ -99,7 +99,7 @@ const AddService = () => {
               />
             </div>
             <div className="col-span-full sm:col-span-2">
-              <label for="rating" className="text-sm">
+              <label htmlFor="rating" className="text-sm">
                 Service Rating
               </label>
               <input
