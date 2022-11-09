@@ -64,9 +64,12 @@ const Navbar = () => {
           <li>
             <Link to={'/services'}>SERVICES</Link>
           </li>
-          <li>
-            <Link to={'/myreviews'}>MY REVIEWS</Link>
-          </li>
+          {
+            user?.email && <li><Link to={'/myreviews'}>MY REVIEWS</Link></li>
+          }
+          {
+            user?.email && <li><Link to={'/addservice'}>ADD SERVICE</Link></li>
+          }
         </ul>
       </div>
       <div className="navbar-end">
