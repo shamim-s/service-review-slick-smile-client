@@ -70,6 +70,9 @@ const Navbar = () => {
           {
             user?.email && <li><Link to={'/addservice'}>ADD SERVICE</Link></li>
           }
+          <li>
+            <Link to={'/blog'}>BLOG</Link>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">

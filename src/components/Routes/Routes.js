@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/blog',
-                element: <PrivetRoutes><Blog></Blog></PrivetRoutes>
+                element:<Blog></Blog>
             },
             {
                 path: '/services',
