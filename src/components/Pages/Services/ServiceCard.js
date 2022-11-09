@@ -1,37 +1,25 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import React from "react";
 import { Link } from "react-router-dom";
+import Photoview from "../Home/Services/Photoview";
 
-const ServiceCard = ({service}) => {
-    return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={service.img}
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {service.name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {service.details.slice(0, 100) + '...'}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <p className='mt-4 font-semibold'>Rating: {service.rating}</p>
-          <p className='mt-2 font-semibold'>Price: ${service.price}</p>
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Link to={`/services/all/${service._id}`}><Button size="small">DETAILS</Button></Link>
-      </CardActions>
-    </Card>
+const ServiceCard = ({ service }) => {
+  const {details, img, name, price, rating, _id} = service;
+  return (
+    <div className="mx-auto">
+      <div className="card card-compact max-w-96 h-96 bg-base-100 shadow-xl rounded-none">
+        <figure>
+          <Photoview image={service.img}/>
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">{name}</h2>
+          <p>{details.slice(0, 100) + "..."}</p>
+          <div className="card-actions justify-between items-center">
+            <span className="text-2xl font font-semibold">${price}</span>
+            <Link to={`/services/all/${_id}`} className="pt-1 pb-1 pl-2 pr-2 text-blue-600 font-bold text-base hover:bg-slate-200 transition">DETAILS</Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

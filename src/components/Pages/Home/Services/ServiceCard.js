@@ -1,42 +1,26 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
 import { Link } from "react-router-dom";
+import Photoview from "./Photoview";
 
-const ServiceCard = ({service}) => {
+const ServiceCard = ({ service }) => {
+  const { img, name, price, details, rating, _id } = service;
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image={service.img}
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {service.name}
-          </Typography>
-          <Typography variant="body2" className="mb-8" color="text.secondary">
-            {service.details.slice(0, 100) + '...'}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            <p className="mt-4 font-semibold">Ratings: {service.rating}</p>
-            <p className="mt-2 font-semibold">Price: ${service.price}</p>
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-         <Link className="" to={`/services/all/${service._id}`}>
-             Details
-         </Link>
-        </Button>
-      </CardActions>
-    </Card>
+    <div className="mx-auto">
+      <div className="card card-compact max-w-96 h-96 bg-base-100 shadow-xl rounded-none">
+        <figure>
+          <Photoview image={service.img}/>
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">{name}</h2>
+          <p>{details.slice(0, 100) + '...'}</p>
+          <div className="card-actions justify-between items-center">
+            <span className="text-2xl font font-semibold">${price}</span>
+            <Link to={`/services/all/${_id}`} className=" pt-1 pb-1 pl-2 pr-2 text-blue-600 font-bold text-base hover:bg-slate-200 transition">DETAILS</Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

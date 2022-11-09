@@ -11,7 +11,6 @@ const Details = () => {
   const service = useLoaderData();
   const {name, img, price, details, rating} = service;
   const {modal, setModal} = useContext(AuthContext);
-
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
