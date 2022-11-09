@@ -1,4 +1,5 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 const AddService = () => {
 
@@ -21,7 +22,7 @@ const AddService = () => {
         }
         console.log(newService);
 
-        fetch('http://localhost:5000/services', {
+        fetch('http://localhost:5000/addservice', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -29,7 +30,12 @@ const AddService = () => {
             body: JSON.stringify(newService)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if(data.acknowledged){
+                toast.success('Service Added Successfully');
+            }
+            console.log(data);
+        })
     }
   return (
     <section className="p-6 dark:bg-gray-800 dark:text-gray-50 bg-base-300 mt-10 mb-10">
