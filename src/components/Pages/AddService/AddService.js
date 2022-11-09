@@ -36,6 +36,8 @@ const AddService = () => {
             }
             console.log(data);
         })
+
+        form.reset();
     }
   return (
     <section className="p-6 dark:bg-gray-800 dark:text-gray-50 bg-base-300 mt-10 mb-10">
