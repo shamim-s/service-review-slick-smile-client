@@ -25,6 +25,8 @@ const Register = () => {
     .then(result => {
       const user = result.user;
       console.log(user);
+      
+      //updating user
       updateUser(name)
       .then(() => {
         toast.success("Name Updated")
@@ -35,7 +37,26 @@ const Register = () => {
       })
 
       setUser(user);
-      naviget(from, {replace: true});
+
+      const currentUser ={
+        email: user.email
+      }
+
+      // jwt
+      fetch('https://slick-smile-server.vercel.app/jwt', {
+        method:'POST',
+        headers: {
+          'content-type':'application/json'
+        },
+        body: JSON.stringify(currentUser)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        localStorage.setItem('token', data.token);
+        naviget(from, {replace:true})
+      })
+
       toast.success("Register Successfully");
     })
     .catch(err => {

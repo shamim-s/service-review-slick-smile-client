@@ -87,8 +87,8 @@ const Navbar = () => {
           <>
           {
             user?.photoURL ? 
-              <span className="tooltip tooltip-bottom" data-tip={user.displayName}>
-              <img className="mask mask-circle w-12 " src={user.photoURL} alt=""/>
+              <span className="tooltip tooltip-bottom border-2 rounded-full border-indigo-700" data-tip={user.displayName}>
+              <img className="mask mask-circle w-12" src={user.photoURL} alt=""/>
               </span> 
               :
               <span className="tooltip tooltip-bottom" data-tip={user.displayName}>

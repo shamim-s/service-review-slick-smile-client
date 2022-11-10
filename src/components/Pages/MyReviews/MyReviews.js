@@ -78,7 +78,7 @@ const MyReviews = () => {
           </tbody>
         </table>
         {myReview.length === 0 && (
-          <h1 className="text-center mt-5 text-2xl">Now review added</h1>
+          <h1 className="text-center mt-5 mb-5 text-2xl">No review added</h1>
         )}
       </div>
     </div>

@@ -56,7 +56,27 @@ const Login = () => {
     .then(result => {
       const user = result.user;
       setUser(user);
-      naviget(from, {replace: true});
+
+      // jwt verify 
+      const crrUser = {
+        email: user.email
+      }
+
+      // jwt
+      fetch('https://slick-smile-server.vercel.app/jwt', {
+        method:'POST',
+        headers: {
+          'content-type':'application/json'
+        },
+        body: JSON.stringify(crrUser)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        localStorage.setItem('token', data.token);
+        naviget(from, {replace:true})
+      })
+
       toast.success("Login Successfully");
     })
     .catch(err => {
