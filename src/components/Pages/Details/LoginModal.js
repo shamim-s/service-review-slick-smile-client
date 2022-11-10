@@ -8,19 +8,17 @@ const LoginModal = () => {
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">
-            Oops!
-          </h3>
-          <p className="py-4">
-            Please login or register to add a review!
-          </p>
+          <h3 className="font-bold text-lg">Oops!</h3>
+          <p className="py-4">Please login or register to add a review!</p>
           <div className="modal-action">
             <label htmlFor="my-modal" className="btn">
-                    Close
-                </label>
-                <label htmlFor="my-modal" className="">
-                     <Link className="btn" to={'/login'}>Login?</Link>
-                </label>
+              Close
+            </label>
+            <label htmlFor="my-modal" className="">
+              <Link className="btn" to={"/login"}>
+                Login?
+              </Link>
+            </label>
           </div>
         </div>
       </div>

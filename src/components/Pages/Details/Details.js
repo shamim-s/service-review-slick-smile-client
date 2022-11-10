@@ -45,10 +45,10 @@ const Details = () => {
           </div>
           {
             user?.uid ? 
-            <>
+            // add review modal if user exist
             <AddReview service={service}></AddReview>
-            </>
             :
+            // login modal if user not exist 
             <LoginModal></LoginModal>
           }
           

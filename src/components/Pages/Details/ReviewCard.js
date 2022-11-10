@@ -3,9 +3,9 @@ import image from '../../../images/avatar-svgrepo-com (1).svg';
 
 const ReviewCard = ({review}) => {
   return (
-    <div className="container flex flex-col w-96 max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100 bg-base-300 mt-4 mb-4">
+    <div className="container flex flex-col w-80 p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100 bg-base-300 mt-4 mb-4">
       <div className="flex justify-between p-4">
-        <div className="flex space-x-4">
+        <div className="">
           <div>
             {
               review?.img ? <img
@@ -18,8 +18,7 @@ const ReviewCard = ({review}) => {
             }
           </div>
           <div>
-            <h4 className="font-bold">{review.email}</h4>
-            
+            <p className="font-bold mt-4">{review.email}</p>
           </div>
         </div>
         
