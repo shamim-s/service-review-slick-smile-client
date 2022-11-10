@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/Context';
 
 const Register = () => {
   useTitle('Register');
-  const {setUser, createNewUser, updateUser} = useContext(AuthContext);
+  const {setUser, createNewUser, updateUser,loginWithGoogle} = useContext(AuthContext);
 
   const naviget = useNavigate();
   const location = useLocation();
@@ -25,7 +25,7 @@ const Register = () => {
     .then(result => {
       const user = result.user;
       console.log(user);
-      
+
       //updating user
       updateUser(name)
       .then(() => {
@@ -64,6 +64,41 @@ const Register = () => {
       toast.error(err.message);
     })
   
+  }
+
+// Sign in With Google 
+  const loginWithPopup = () => {
+    loginWithGoogle()
+    .then(result => {
+      const user = result.user;
+      setUser(user);
+
+      // jwt verify 
+      const crrUser = {
+        email: user.email
+      }
+
+      // jwt
+      fetch('https://slick-smile-server.vercel.app/jwt', {
+        method:'POST',
+        headers: {
+          'content-type':'application/json'
+        },
+        body: JSON.stringify(crrUser)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        localStorage.setItem('token', data.token);
+        naviget(from, {replace:true})
+      })
+
+      toast.success("Login Successfully");
+    })
+    .catch(err => {
+      console.error(err);
+      toast.error(err.message);
+    })
   }
     return (
         <div className="bg-base-300 mx-auto mt-10 mb-10 w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
@@ -114,7 +149,7 @@ const Register = () => {
       </form>
       <div className="divider">OR</div>
       <div className="flex justify-center space-x-4">
-        <button className="p-3 rounded-sm">
+        <button onClick={loginWithPopup} className="p-3 rounded-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
