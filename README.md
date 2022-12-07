@@ -10,7 +10,7 @@
 * https://github.com/shamim-s/service-review-slick-smile-client
 
 # Server side privet repo link : -----------------
-* https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-shamim-s
+* https://github.com/shamim-s/service-review-slick-smile-server
 
 # Live website link / Hosted website link: --------
 * https://slick-smile.web.app/
